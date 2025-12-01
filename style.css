@@ -1,0 +1,29 @@
+body {
+  font-family: sans-serif;
+  padding: 20px;
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.card-btn,
+#back-btn {
+  padding: 20px;
+  font-size: 18px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+/* SPA navigation */
+.view {
+  display: none;
+}
+
+.view.active {
+  display: block;
+}
