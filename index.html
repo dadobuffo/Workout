@@ -4,32 +4,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Workout</title>
+    <meta name="theme-color" content="#2c3e50">
+    <title>Gym Workout Planner</title>
     <link rel="stylesheet" href="style.css">
     <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
 </head>
 
 <body>
+    <div class="container">
+        <header>
+            <h1>Gym Workout Planner</h1>
+            <p class="subtitle">Track your progress and follow your routines</p>
+        </header>
 
-    <div id="view-home" class="view active">
-        <h1>Your Workouts</h1>
-        <div class="container">
-            <button class="card-btn" data-card="A">Workout A</button>
-            <button class="card-btn" data-card="B">Workout B</button>
-            <button class="card-btn" data-card="C">Workout C</button>
+        <main>
+            <section class="workout-selector">
+                <h2>Select Your Workout</h2>
+                <div class="buttons-container">
+                    <button id="workoutA" class="workout-btn workout-a">
+                        <span class="btn-title">Workout A</span>
+                        <span class="btn-subtitle">Push - Chest & Triceps</span>
+                    </button>
+                    <button id="workoutB" class="workout-btn workout-b">
+                        <span class="btn-title">Workout B</span>
+                        <span class="btn-subtitle">Pull - Back & Biceps</span>
+                    </button>
+                    <button id="workoutC" class="workout-btn workout-c">
+                        <span class="btn-title">Workout C</span>
+                        <span class="btn-subtitle">Legs & Shoulders</span>
+                    </button>
+                </div>
+            </section>
+
+            <section id="workoutDetails" class="workout-details hidden">
+                <div class="workout-header">
+                    <button id="backButton" class="back-btn">← Back</button>
+                    <h2 id="workoutTitle">Workout Title</h2>
+                    <div class="workout-info">
+                        <span id="workoutFocus">Focus: Chest & Triceps</span>
+                        <span id="workoutDate">Today: <span id="currentDate"></span></span>
+                    </div>
+                </div>
+
+                <div class="exercises-container" id="exercisesContainer">
+                    <!-- Exercises will be dynamically generated here -->
+                </div>
+
+                <div class="workout-summary">
+                    <div class="summary-item">
+                        <span class="summary-label">Total Exercises:</span>
+                        <span id="totalExercises" class="summary-value">0</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Total Sets:</span>
+                        <span id="totalSets" class="summary-value">0</span>
+                    </div>
+                    <button id="completeWorkout" class="complete-btn">Complete Workout</button>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Gym Workout App &copy; <span id="currentYear"></span></p>
+            <p class="app-instruction">Add to Home Screen for app-like experience</p>
+        </footer>
+    </div>
+
+    <!-- Exercise Template (hidden, used by JavaScript) -->
+    <template id="exerciseTemplate">
+        <div class="exercise-card">
+            <div class="exercise-header">
+                <h3 class="exercise-name">Exercise Name</h3>
+                <div class="exercise-muscle">Target Muscle</div>
+            </div>
+            <div class="exercise-content">
+                <div class="exercise-sets">
+                    <div class="set-info">
+                        <span class="set-label">Sets</span>
+                        <span class="set-value">3</span>
+                    </div>
+                    <div class="set-info">
+                        <span class="set-label">Reps</span>
+                        <span class="set-value">10-12</span>
+                    </div>
+                    <div class="set-info">
+                        <span class="set-label">Weight</span>
+                        <span class="set-value">0 kg</span>
+                    </div>
+                </div>
+                <div class="exercise-actions">
+                    <button class="weight-btn decrease">-</button>
+                    <div class="current-weight">
+                        <span class="weight-value">0</span>
+                        <span class="weight-unit">kg</span>
+                    </div>
+                    <button class="weight-btn increase">+</button>
+                    <button class="check-btn">✓</button>
+                </div>
+                <div class="sets-tracker">
+                    <!-- Set circles will be generated here -->
+                </div>
+            </div>
+            <div class="exercise-notes">
+                <textarea placeholder="Add notes for this exercise..."></textarea>
+            </div>
         </div>
-    </div>
+    </template>
 
-    <div id="view-card" class="view">
-        <button id="back-btn">⬅ Back</button>
-        <h2 id="card-title"></h2>
-        <div id="exercise-list"></div>
-    </div>
-    <div id="log"
-        style="position:fixed;bottom:0;width:100%;background:#eee;color:#000;max-height:150px;overflow:auto;font-size:12px;">
-    </div>
-
-    <script src="app.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>
