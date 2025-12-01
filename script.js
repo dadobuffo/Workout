@@ -198,6 +198,13 @@ function initApp() {
 
   // Setup fullscreen app mode detection
   setupFullscreenMode();
+
+  checkDisplayMode();
+  showMobileInstallPrompt();
+
+  // Also check on resize/orientation change
+  window.addEventListener("resize", checkDisplayMode);
+  window.addEventListener("orientationchange", checkDisplayMode);
 }
 
 // Setup fullscreen mode detection
@@ -448,3 +455,65 @@ function loadNotesFromStorage(exerciseName) {
 
 // Initialize app when DOM is loaded
 document.addEventListener("DOMContentLoaded", initApp);
+
+// Force standalone mode detection
+function checkDisplayMode() {
+  const isStandalone =
+    window.matchMedia("(display-mode: standalone)").matches ||
+    window.navigator.standalone === true ||
+    document.referrer.includes("android-app://");
+
+  if (isStandalone) {
+    document.body.classList.add("fullscreen-mode");
+    console.log("Running in standalone app mode");
+
+    // Hide browser UI on iOS
+    if (window.navigator.standalone) {
+      setTimeout(() => {
+        window.scrollTo(0, 1);
+      }, 100);
+    }
+  }
+
+  return isStandalone;
+}
+
+// Add install prompt for mobile
+function showMobileInstallPrompt() {
+  // Only show on mobile devices
+  if (
+    !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+      navigator.userAgent
+    )
+  ) {
+    return;
+  }
+
+  // Don't show if already in standalone mode
+  if (checkDisplayMode()) {
+    return;
+  }
+
+  // Show install prompt after 10 seconds
+  setTimeout(() => {
+    const isiOS =
+      /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    const isAndroid = /Android/.test(navigator.userAgent);
+
+    if (isiOS && window.navigator.standalone === false) {
+      alert(
+        '👆 Per un\'esperienza migliore:\n\n1. Tocca "Condividi" (↑)\n2. Scorri giù\n3. Tocca "Aggiungi a Home"\n\nCosì l\'app si aprirà a schermo intero!'
+      );
+    } else if (isAndroid) {
+      // Check if beforeinstallprompt event is supported
+      if ("onbeforeinstallprompt" in window) {
+        // Chrome will show its own install prompt
+        console.log("Chrome PWA install available");
+      } else {
+        alert(
+          '📱 Per installare l\'app:\n\n1. Menu Chrome (⋮)\n2. "Aggiungi alla schermata Home"\n\nCosì si aprirà a schermo intero!'
+        );
+      }
+    }
+  }, 10000);
+}
