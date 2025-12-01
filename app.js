@@ -11,6 +11,18 @@ if ("serviceWorker" in navigator) {
       );
   });
 }
+function log(msg) {
+  console.log(msg);
+  const logDiv = document.getElementById("log");
+  if (logDiv) logDiv.innerHTML += msg + "<br>";
+}
+
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker
+    .register("./service-worker.js")
+    .then(() => log("Service Worker registered"))
+    .catch((err) => log("SW registration failed: " + err));
+}
 
 // -------------------------
 // DEFAULT WORKOUT DATA
