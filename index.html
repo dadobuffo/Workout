@@ -4,32 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gym Workout Planner</title>
+    <title>Workout</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <div class="container">
-        <header>
-            <h1>Gym Workout Planner</h1>
-            <p class="subtitle">Track your progress and follow your routines</p>
-        </header>
-
         <main>
             <section class="workout-selector">
-                <h2>Select Your Workout</h2>
-                <div class="buttons-container">
+                <div class="button-container">
                     <button id="workoutA" class="workout-btn workout-a">
-                        <span class="btn-title">Workout A</span>
-                        <span class="btn-subtitle">Push - Chest & Triceps</span>
+                        <span class="btn-title">CHEST & TRICEPS</span>
+                        <span class="btn-subtitle">1 / 3</span>
                     </button>
                     <button id="workoutB" class="workout-btn workout-b">
-                        <span class="btn-title">Workout B</span>
-                        <span class="btn-subtitle">Pull - Back & Biceps</span>
+                        <span class="btn-title">BACK & BICEPS</span>
+                        <span class="btn-subtitle">2 / 3</span>
                     </button>
                     <button id="workoutC" class="workout-btn workout-c">
-                        <span class="btn-title">Workout C</span>
-                        <span class="btn-subtitle">Legs & Shoulders</span>
+                        <span class="btn-title">LEGS & SHOULDERS</span>
+                        <span class="btn-subtitle">3 / 3</span>
                     </button>
                 </div>
             </section>
@@ -37,40 +31,20 @@
             <section id="workoutDetails" class="workout-details hidden">
                 <div class="workout-header">
                     <button id="backButton" class="back-btn">
-                        <span class="back-icon">←</span>
-                        <span class="back-text">Back to Workouts</span>
+                        <img src="Assets/Icons/arrow-back.svg" alt="Return to workout selection">
                     </button>
-                    <h2 id="workoutTitle">Workout Title</h2>
                     <div class="workout-info">
-                        <span id="workoutFocus">Focus: Chest & Triceps</span>
-                        <span id="workoutDate">Today: <span id="currentDate"></span></span>
+                        <h2 class="workout-title" id="workoutTitle">TITLE</h2>
+                        <span class="workout-focus" id="workoutFocus">1 / 3 </span>
                     </div>
                 </div>
 
-                <div class="exercises-container" id="exercisesContainer">
-                    <!-- Exercises will be dynamically generated here -->
-                </div>
-
-                <div class="workout-summary">
-                    <div class="summary-item">
-                        <span class="summary-label">Total Exercises:</span>
-                        <span id="totalExercises" class="summary-value">0</span>
-                    </div>
-                    <div class="summary-item">
-                        <span class="summary-label">Total Sets:</span>
-                        <span id="totalSets" class="summary-value">0</span>
-                    </div>
-                    <button id="completeWorkout" class="complete-btn">Complete Workout</button>
-                </div>
+                <div class="exercises-container" id="exercisesContainer"> </div>
             </section>
         </main>
-
-        <footer>
-            <p>Gym Workout App &copy; <span id="currentYear"></span></p>
-        </footer>
     </div>
 
-    <!-- Exercise Template (hidden, used by JavaScript) -->
+    <!-- TEMPLATE -->
     <template id="exerciseTemplate">
         <div class="exercise-card">
             <div class="exercise-header">
@@ -92,9 +66,6 @@
                         <input type="text" class="input-field weight-input" value="0 kg">
                     </div>
                 </div>
-            </div>
-            <div class="exercise-notes">
-                <textarea placeholder="Add notes for this exercise..."></textarea>
             </div>
         </div>
     </template>
