@@ -44,7 +44,7 @@ function setupEventListeners() {
     .getElementById("workoutC")
     .addEventListener("click", () => showWorkout("workoutC"));
 
-  backButton.addEventListener("click", hideWorkout);
+  backButton.addEventListener("click", () => history.back());
 
   window.addEventListener("popstate", handlePopState);
 
@@ -215,8 +215,6 @@ function hideWorkout() {
 
   workoutDetails.classList.add("hidden");
   workoutSelector.classList.remove("hidden");
-
-  history.pushState({ view: "home" }, "", "#home");
 }
 
 document.addEventListener("DOMContentLoaded", initApp);

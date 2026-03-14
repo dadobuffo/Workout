@@ -1,13 +1,13 @@
-const CACHE_NAME = "workout-cache-v1";
+const CACHE_NAME = "workout-cache-v2";
 const urlsToCache = [
-  "/",
-  "/index.html",
-  "/style.css",
-  "/script.js",
-  "/workout-data.json",
-  "/favicon.ico",
-  "/apple-touch-icon.png",
-  "/site.webmanifest",
+  "./",
+  "./index.html",
+  "./style.css",
+  "./script.js",
+  "./workout-data.json",
+  "./favicon.ico",
+  "./apple-touch-icon.png",
+  "./site.webmanifest",
 ];
 
 self.addEventListener("install", (event) => {
