@@ -22,7 +22,6 @@
     <script src="script.js" defer></script>
 </head>
 
-
 <body>
     <div class="container">
         <main>
@@ -50,27 +49,67 @@
                     </button>
                     <div class="workout-info">
                         <h2 class="workout-title" id="workoutTitle">TITLE</h2>
-                        <span class="workout-focus" id="workoutFocus">1 / 3 </span>
+                        <span class="workout-focus" id="workoutFocus">1 / 3</span>
                     </div>
                 </div>
 
-                <div class="exercises-container" id="exercisesContainer"> </div>
+                <div class="exercises-container" id="exercisesContainer"></div>
             </section>
         </main>
     </div>
 
-    <button id="installButton" class="install-btn hidden">
-        📲 Installa App
-    </button>
+    <!-- FAB: add exercise -->
+    <button id="addExerciseBtn" class="fab hidden" aria-label="Aggiungi esercizio">+</button>
 
-    <!-- TEMPLATE -->
+    <!-- PWA install button -->
+    <button id="installButton" class="install-btn hidden">📲 Installa App</button>
+
+    <!-- ADD EXERCISE MODAL -->
+    <div id="addExerciseModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal-backdrop" id="modalBackdrop"></div>
+        <div class="modal-sheet">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalTitle">Nuovo Esercizio</h3>
+                <button class="modal-close" id="modalClose" aria-label="Chiudi">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label" for="newExName">Nome *</label>
+                    <input type="text" id="newExName" class="form-input" placeholder="es. Bench Press" autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="newExMuscle">Muscolo *</label>
+                    <input type="text" id="newExMuscle" class="form-input" placeholder="es. Chest" autocomplete="off">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label" for="newExSets">Set</label>
+                        <input type="text" id="newExSets" class="form-input" placeholder="4">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="newExReps">Reps</label>
+                        <input type="text" id="newExReps" class="form-input" placeholder="10">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="newExWeight">Peso</label>
+                        <input type="text" id="newExWeight" class="form-input" placeholder="20kg">
+                    </div>
+                </div>
+            </div>
+            <button id="saveNewExercise" class="modal-save-btn">Aggiungi</button>
+        </div>
+    </div>
+
+    <!-- EXERCISE CARD TEMPLATE -->
     <template id="exerciseTemplate">
         <div class="exercise-card">
-            <div class="exercise-header">
-                <h3 class="exercise-name">Exercise Name</h3>
-                <div class="exercise-muscle">Target Muscle</div>
-            </div>
-            <div class="exercise-content">
+            <div class="drag-handle" aria-label="Trascina per riordinare">⠿</div>
+            <div class="exercise-main">
+                <div class="exercise-header">
+                    <h3 class="exercise-name">Exercise Name</h3>
+                    <div class="exercise-muscle">Target Muscle</div>
+                    <button class="delete-btn" aria-label="Elimina esercizio">×</button>
+                </div>
                 <div class="exercise-inputs">
                     <div class="input-group">
                         <label class="input-label">Sets</label>

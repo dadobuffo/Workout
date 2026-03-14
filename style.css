@@ -255,3 +255,241 @@ body {
 .install-btn.hidden {
   display: none;
 }
+
+/* ─── DRAG & DROP ──────────────────────────────────────────────────────────── */
+
+/* Drag handle: full-height strip on the left */
+.drag-handle {
+  display: flex;
+  align-items: center;
+  padding: 20px 10px 20px 16px;
+  color: rgba(0, 0, 0, 0.22);
+  font-size: 1.3rem;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  letter-spacing: 1px;
+}
+
+.drag-handle:active {
+  cursor: grabbing;
+}
+
+/* Card becomes a flex row */
+.exercise-card {
+  display: flex !important;
+  align-items: stretch;
+  padding: 0 !important;
+}
+
+/* Main content wrapper */
+.exercise-main {
+  flex: 1;
+  padding: 20px 16px 20px 0;
+}
+
+/* Restyle exercise-header for flex layout */
+.exercise-header {
+  justify-content: flex-start !important;
+  gap: 10px;
+}
+
+.exercise-name {
+  flex: 1;
+}
+
+/* Delete button */
+.delete-btn {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 50%;
+  font-family: inherit;
+  transition: color 0.15s, background 0.15s;
+  flex-shrink: 0;
+}
+
+.delete-btn.delete-confirm {
+  color: rgb(200, 50, 50);
+  background: rgba(200, 50, 50, 0.1);
+}
+
+/* Ghost: floating clone that follows the finger */
+.drag-ghost {
+  position: fixed;
+  z-index: 9999;
+  pointer-events: none;
+  background: white;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
+  border-radius: 4px;
+  opacity: 0.95;
+  transform: scale(1.02);
+}
+
+/* Source card: faded placeholder while dragging */
+.drag-source {
+  opacity: 0.3;
+}
+
+/* ─── FAB ──────────────────────────────────────────────────────────────────── */
+
+.fab {
+  position: fixed;
+  bottom: 24px;
+  right: 20px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: none;
+  background: rgb(22, 22, 22);
+  color: white;
+  font-size: 1.8rem;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.28);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+  transition: transform 0.15s;
+}
+
+.fab:active {
+  transform: scale(0.93);
+}
+
+/* ─── ADD EXERCISE MODAL ───────────────────────────────────────────────────── */
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+}
+
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0);
+  transition: background 0.28s ease;
+}
+
+.modal-visible .modal-backdrop {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.modal-sheet {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  border-radius: 20px 20px 0 0;
+  padding: 24px 20px 40px;
+  max-height: 85svh;
+  overflow-y: auto;
+
+  transform: translateY(100%);
+  transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal-visible .modal-sheet {
+  transform: translateY(0);
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.modal-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.45);
+  padding: 4px 8px;
+  font-family: inherit;
+  line-height: 1;
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+
+.form-row {
+  display: flex;
+  gap: 10px;
+}
+
+.form-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: rgba(22, 22, 22, 0.6);
+}
+
+.form-input {
+  border: 1.5px solid rgba(0, 0, 0, 0.15);
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 500;
+  color: rgb(22, 22, 22);
+  background: white;
+  width: 100%;
+  transition: border-color 0.15s;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: rgb(22, 22, 22);
+}
+
+.form-input.error {
+  border-color: rgb(200, 50, 50);
+}
+
+.form-input::placeholder {
+  color: rgba(22, 22, 22, 0.3);
+  font-weight: 400;
+}
+
+.modal-save-btn {
+  width: 100%;
+  padding: 14px;
+  background: rgb(22, 22, 22);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.modal-save-btn:active {
+  opacity: 0.8;
+}
